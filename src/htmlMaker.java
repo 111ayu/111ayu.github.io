@@ -6,7 +6,7 @@ import java.nio.file.*;
 public class htmlMaker {
     private static final String HTML_DOS = "html";
     private static final String TXT_DOS = "txt";
-    private static final String IMAGE_DOS = "Image";
+    private static final String IMAGE_DOS = "../Image";
     private static final String CSS_CHEMIN = "../css/stylePortrait.css";
 
     public htmlMaker(String titre) throws IOException {
@@ -28,14 +28,16 @@ public class htmlMaker {
         }
         
         Path htmlFichier = htmlDos.resolve(titre + ".html");
-        if (Files.exists(htmlFichier)) {
+        /*if (Files.exists(htmlFichier)) {
             System.out.println("Le fichier html existe déjà.");
             return;
-        }
+        }*/
 
         Path imageFichier = imageDos.resolve(titre+".jpg");
-        if (!Files.exists(imageFichier)) {
-            throw new IOException("Le fichier image n'existe pas.");
+        Path imageFichier2 = Paths.get("./Image/").resolve(titre+".jpg");
+        if (!Files.exists(imageFichier2)) {
+            System.out.println("Le fichier image n'existe pas.");
+            System.out.println(imageFichier);
         }
         
         générerHtml(titre, txtFichier, htmlFichier, imageFichier);
@@ -61,7 +63,10 @@ public class htmlMaker {
                     // writeImage(htmlFichier, titre); // Décommenter si nécessaire
                 } else if (line.startsWith("## ")) {
                     writeSubSubtitle(htmlFichier, line.substring(3));
-                } else if (!line.trim().isEmpty()) {
+                } else if (line.startsWith("Lien : ")) {
+                    String source = line.substring(6);
+                    writeSourceImage(htmlFichier, source);
+                } else{
                     writeParagraph(htmlFichier, line);
                 }
             }
@@ -126,7 +131,7 @@ public class htmlMaker {
     }
     private void writeSubtitle(Path htmlFichier, String subtitle, Path imageDos) throws IOException {
         String content = "<h2>" + subtitle + "</h2>\n";
-        content += "<img src=\"" + imageDos + "width=\"300\"\n" +"        height=\"400\" \" alt=\"" + subtitle + " class=\"portrait\">\n";
+        content += "<div class=\"portrait-container\">\n<img src=\"" + imageDos + "\" width=\"300\"\n" +"        height=\"400\" \" alt=\"" + subtitle + "\" class=\"portrait\">\n";
         writeToFile(htmlFichier, content, true);
     }
     private void writeSubSubtitle(Path htmlFichier, String subSubtitle) throws IOException {
@@ -137,11 +142,23 @@ public class htmlMaker {
         String content = "<p>" + paragraph + "</p>\n";
         writeToFile(htmlFichier, content, true);
     }
+
+    private void writeSourceImage(Path htmlFichier, String source) throws IOException {
+        String content = "<div class=\"source\">\n" +
+                "    Source: " + source + " </div>\n" + 
+                "</div>\n";
+        writeToFile(htmlFichier, content, true);
+    }
     
 
    
     public static void main(String[] args) throws IOException {
-        htmlMaker htmlMaker  = new htmlMaker("MarieCurie");
-        
+        htmlMaker htmlMaker  = new htmlMaker("ClaireVoisin");
+        htmlMaker htmlMaker2 = new htmlMaker("MadeleineBres");
+        htmlMaker htmlMaker3 = new htmlMaker("RosalindElsieFranklin");
+        htmlMaker htmlMaker4 = new htmlMaker("ElizabethBlackwell");
+        htmlMaker htmlMaker5 = new htmlMaker("JulieVictoireDaubie");
+        htmlMaker htmlMaker6 = new htmlMaker("ClaudieHaignere");
+        htmlMaker htmlMaker7 = new htmlMaker("YvonneChoquetBruhat");
         }
 }
