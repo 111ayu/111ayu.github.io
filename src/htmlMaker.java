@@ -160,5 +160,6 @@ public class htmlMaker {
         htmlMaker htmlMaker5 = new htmlMaker("JulieVictoireDaubie");
         htmlMaker htmlMaker6 = new htmlMaker("ClaudieHaignere");
         htmlMaker htmlMaker7 = new htmlMaker("YvonneChoquetBruhat");
+        htmlMaker htmlMaker8 = new htmlMaker("Portrait");
         }
 }
