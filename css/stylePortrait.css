@@ -42,6 +42,7 @@ header {
     left: 2rem;
     top: 50%;
     transform: translateY(-50%);
+    height: 50px; /* Ajout d'une hauteur fixe */
 }
 
 .Logo img {
@@ -55,9 +56,11 @@ header {
 
 header h1 {
     font-family: "Rastanty", serif;
-    font-size: 2.2rem;
+    font-size: 3rem;  /* Augmenté de 2.2rem à 3rem */
     margin: 0 auto;
     max-width: 800px;
+    line-height: 1.2;  /* Ajouté pour mieux contrôler l'espacement vertical */
+    padding: 0.5rem 0; /* Ajustez si nécessaire */
 }
 
 
@@ -197,7 +200,8 @@ footer {
         }
         
         header h1 {
-            font-size: 1.8rem;
+            font-size: 2.2rem; 
+            padding: 0.3rem 0;
         }
         
         main {
