@@ -2,9 +2,12 @@
 :root {
     --primary: #6a4c93;
     --secondary: #f8f1ff;
-    --accent: #ff7e6b;
+    --accent: #bd95f6;
     --text: #2d2d2d;
     --light: #ffffff;
+    --photo:#ccb4ed;
+    --source: #371e4a
+    ;
 }
 
 @font-face {
@@ -102,13 +105,20 @@ h2 {
 }
 
 .source {
-    color: var(--accent);
+    color: var(--photo);
     font-size: 0.9rem;
     margin-top: 0.5rem;
     text-align: center;
     font-style: italic;
     display: block;
     width: 100%;
+}
+
+.source a {
+    color: var(--source);
+    font-size: 1.0rem;
+    font-style: normal;
+    text-decoration: none;
 }
 
 .portrait:hover {

@@ -114,10 +114,7 @@ public class htmlMaker {
             "    <footer>",
             "        <div class=\"Boite\">",
             "            <ul class=\"Lien\">",
-            "                <li><a href=\"accueil.html\">Accueil</a></li>",
-            "            </ul>",
-            "            <ul class=\"Lien\">",
-            "                <li><a href=\"index.html\">Portrait</a></li>",
+            "                <li><a href=\"index.html\">Accueil</a></li>",
             "            </ul>",
             "            <ul class=\"Lien\">",
             "                <li><a href=\"contact.html\">Contact</a></li>",
@@ -145,7 +142,7 @@ public class htmlMaker {
 
     private void writeSourceImage(Path htmlFichier, String source) throws IOException {
         String content = "<div class=\"source\">\n" +
-                "    Source: " + source + " </div>\n" + 
+                source + " </div>\n" + 
                 "</div>\n";
         writeToFile(htmlFichier, content, true);
     }
@@ -153,13 +150,13 @@ public class htmlMaker {
 
    
     public static void main(String[] args) throws IOException {
-        htmlMaker htmlMaker  = new htmlMaker("ClaireVoisin");
+        /*htmlMaker htmlMaker  = new htmlMaker("ClaireVoisin");
         htmlMaker htmlMaker2 = new htmlMaker("MadeleineBres");
         htmlMaker htmlMaker3 = new htmlMaker("RosalindElsieFranklin");
         htmlMaker htmlMaker4 = new htmlMaker("ElizabethBlackwell");
         htmlMaker htmlMaker5 = new htmlMaker("JulieVictoireDaubie");
         htmlMaker htmlMaker6 = new htmlMaker("ClaudieHaignere");
         htmlMaker htmlMaker7 = new htmlMaker("YvonneChoquetBruhat");
-        htmlMaker htmlMaker8 = new htmlMaker("Portrait");
+        htmlMaker htmlMaker8 = new htmlMaker("Portrait");*/
         }
 }
