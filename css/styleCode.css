@@ -1,0 +1,98 @@
+body {
+    font-family: 'Courier New', monospace;
+    text-align: center;
+    background-color: #000;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: #0f0;
+    position: relative;
+}
+
+/* Effet de scanlines */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(rgba(0, 150, 0, 0.1) 0 0),
+        linear-gradient(rgba(0, 150, 0, 0.1) 0 100%),
+        linear-gradient(rgba(0, 100, 0, 0.1) 0 0),
+        linear-gradient(rgba(0, 100, 0, 0.1) 0 100%);
+    background-size: 100% 2px;
+    background-repeat: no-repeat;
+    animation: scanline 8s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes scanline {
+    0% { background-position: 0 0, 0 100%, 0 0, 0 100%; }
+    100% { background-position: 0 100vh, 0 calc(100vh - 2px), 0 10px, 0 calc(100vh - 10px); }
+}
+
+.code-container {
+    background: rgba(0, 20, 0, 0.7);
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3),
+                inset 0 0 10px rgba(0, 255, 0, 0.2);
+    max-width: 400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    border: 1px solid #0a0;
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    from { box-shadow: 0 0 20px rgba(0, 255, 0, 0.3); }
+    to { box-shadow: 0 0 30px rgba(0, 255, 0, 0.5); }
+}
+
+h2 {
+    color: #0f0;
+    margin-bottom: 30px;
+    text-shadow: 0 0 5px #0f0;
+    font-size: 24px;
+}
+
+input {
+    font-size: 24px;
+    padding: 15px;
+    width: 250px;
+    text-align: center;
+    letter-spacing: 5px;
+    background: rgba(0, 10, 0, 0.8);
+    border: 1px solid #0a0;
+    color: #0f0;
+    outline: none;
+    font-family: 'Courier New', monospace;
+    border-radius: 3px;
+}
+
+input:focus {
+    border-color: #0f0;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+#message {
+    margin-top: 20px;
+    min-height: 24px;
+    color: #f00;
+    text-shadow: 0 0 5px #f00;
+    font-weight: bold;
+    animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
+}

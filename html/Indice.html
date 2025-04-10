@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styleIndice.css">
+    <title>Indice Temporel</title>
+</head>
+<body>
+    <div class="message-container">
+        <h1 class="typing" id="Message"></h1>
+        
+        <div class="IndiceCaché" id="IndiceCachée">.</div>
+        
+        <div id="MessageSecret">
+            <p>Le cercle des 17 de Richard Paul Evans</p>
+        </div>
+    </div>
+    <script>
+        const Texte = "La personne qui a disparu est liée aux sciences dures.";
+        const Message = document.getElementById('Message');
+        let i = 0;
+        
+        function typeWriter() {
+            if (i < Texte.length) {
+                Message.innerHTML += Texte.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50);
+            } else {
+                Message.classList.remove('typing');
+                // Affiche l'indice caché après 2 secondes
+                setTimeout(() => {
+                    document.getElementById('IndiceCachée').textContent = 
+                    "·−·· ·  −·−· · ·−· −·−· ·−·· ·  −·· · ···  ·−−−− −−···  −·· ·  ·−· ·· −·−· ···· ·− ·−· −··  · ···− ·− −· ··· ";
+                }, 2000);
+            }
+        }
+        
+        // Démarre l'animation de la machine à écrire
+        typeWriter();
+        
+        // Interaction avec l'indice caché
+        document.getElementById('IndiceCachée').addEventListener('click', function() {
+            this.style.display = 'none';
+            const MessageSecret = document.getElementById('MessageSecret');
+            MessageSecret.style.display = 'block';
+        });
+    </script>
+</body>
+</html>

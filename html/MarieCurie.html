@@ -1,48 +1,69 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/stylePortrait.css">
-    <title>MarieCurie</title>
-</head>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/styleCode.css">
+        <title>Escape Game - Code Secret</title>
+    </head>
 <body>
-    <header>
-        <div class="Logo">
-            <a href="../index.html">
-                <img src="../Image/Logo.jpg" alt="Logo">
-            </a>
-        </div>
-        <h1>Portrait de Femmes</h1>
-    </header>
-    <main>
-<h2>Marie Curie</h2>
-<img src="Image/MarieCurie.jpgwidth="300"
-        height="400" " alt="Marie Curie" class="portrait">
-<h3>Presentation breve</h3>
-<p>jdeodjzd</p>
-<p>dejozdiez</p>
-<p>djeide</p>
-<h3> DKejdoed</h3>
-<p>dekjdej</p>
-<p>dekjdej</p>
-<p>dejozdiez</p>
-<h3>f jlrfrp</h3>
-<p>jfrjfor</p>
-<p>frojfrpjf</p>
-    </main>
-    <footer>
-        <div class="Boite">
-            <ul class="Lien">
-                <li><a href="accueil.html">Accueil</a></li>
-            </ul>
-            <ul class="Lien">
-                <li><a href="index.html">Portrait</a></li>
-            </ul>
-            <ul class="Lien">
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-    </footer>
+    <div class="code-container">
+        <h2>ENTREZ LE CODE À 8 CHIFFRES</h2>
+        <input type="text" id="codeInput" maxlength="8" pattern="\d*" inputmode="numeric" placeholder="_ _ _ _ _ _ _ _" autofocus>
+        <p id="message">ACCÈS REFUSÉ</p>
+    </div>
+
+    <script>
+        // Code hashé (SHA-256 du code réel)
+        const HASHED_CODE = "55a21b8bb1906c6ecadcbdfb4a6849d14dfccd36fcc4e8e1a32db78fc22a4ba6";
+        const messageElement = document.getElementById('message');
+        
+        document.getElementById('codeInput').addEventListener('input', function(e) {
+            messageElement.textContent = "";
+            // Vérification en temps réel
+            if (this.value.length === 8) {
+                checkCode(this.value);
+            }
+        });
+
+        async function checkCode(enteredCode) {
+            // Effet de chargement
+            messageElement.textContent = "VÉRIFICATION...";
+            messageElement.style.color = "#0f0";
+            
+            // Délai artificiel pour la tension
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Hasher l'entrée pour comparer
+            const msgBuffer = new TextEncoder().encode(enteredCode);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            
+            if (hashHex === HASHED_CODE) {
+                // Effet de succès
+                messageElement.textContent = "ACCÈS AUTORISÉ";
+                messageElement.style.color = "#0f0";
+                
+                // Redirection avec délai
+                setTimeout(() => {
+                    window.location.href = "Indice.html";
+                }, 1000);
+            } else {
+                // Effet d'échec
+                messageElement.textContent = "CODE INCORRECT";
+                messageElement.style.color = "#f00";
+                document.getElementById('codeInput').value = "";
+            }
+        }
+
+        // Empêcher l'inspection de la fonction
+        Object.defineProperty(window, 'checkCode', {
+            value: checkCode,
+            writable: false,
+            configurable: false
+        });
+        
+    </script>
 </body>
 </html>

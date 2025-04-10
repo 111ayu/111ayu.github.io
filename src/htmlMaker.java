@@ -117,7 +117,7 @@ public class htmlMaker {
             "                <li><a href=\"index.html\">Accueil</a></li>",
             "            </ul>",
             "            <ul class=\"Lien\">",
-            "                <li><a href=\"contact.html\">Contact</a></li>",
+            "                <li><a href=\"contact.html\">Crédits</a></li>",
             "            </ul>",
             "        </div>",
             "    </footer>",

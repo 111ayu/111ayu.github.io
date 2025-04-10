@@ -1,0 +1,78 @@
+body {
+    font-family: 'Courier New', monospace;
+    background-color: #000;
+    color: #0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Effet de scanlines */
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(rgba(0, 150, 0, 0.1) 0 0),
+        linear-gradient(rgba(0, 150, 0, 0.1) 0 100%);
+    background-size: 100% 3px;
+    background-repeat: no-repeat;
+    animation: scanline 6s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+
+.message-container {
+    background: rgba(0, 20, 0, 0.7);
+    padding: 2rem;
+    border: 1px solid #0f0;
+    border-radius: 5px;
+    max-width: 600px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.IndiceCaché {
+    color: transparent;
+    cursor: pointer;
+    position: relative;
+}
+
+.IndiceCaché:hover {
+    color: #0f0;
+}
+
+#MessageSecret {
+    display: none;
+    margin-top: 2rem;
+    padding: 1rem;
+    background: rgba(0, 30, 0, 0.9);
+    border: 1px dashed #0f0;
+    animation: blink 1.5s infinite alternate;
+}
+
+@keyframes blink {
+    from { opacity: 0.7; }
+    to { opacity: 1; }
+}
+
+/* Effet de texte qui s'affiche */
+.typing {
+    border-right: 2px solid #0f0;
+    animation: cursor 1s step-end infinite;
+}
+
+@keyframes cursor {
+    from, to { border-color: transparent; }
+    50% { border-color: #0f0; }
+}
